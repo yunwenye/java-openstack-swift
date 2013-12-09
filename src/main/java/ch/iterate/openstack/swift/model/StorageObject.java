@@ -95,4 +95,12 @@ public class StorageObject {
         result = 31 * result + (lastModified != null ? lastModified.hashCode() : 0);
         return result;
     }
+
+	@Override
+	public String toString() {
+		return "StorageObject [name=" + name + ", md5sum=" + md5sum + ", size="
+				+ size + ", mimeType=" + mimeType + ", lastModified="
+				+ lastModified + "]";
+	}
+    
 }
