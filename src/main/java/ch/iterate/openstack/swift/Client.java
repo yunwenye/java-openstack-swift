@@ -1463,6 +1463,7 @@ public class Client {
             final String path = region.getStorageUrl(container, object).getRawPath();
             body.append(path.substring(region.getStorageUrl().getRawPath().length() + 1)).append('\n');
         }
+       
         method.setEntity(new StringEntity(body.toString(), "UTF-8"));
         this.execute(method, new DefaultResponseHandler());
     }
@@ -1556,6 +1557,12 @@ public class Client {
             method.setHeader(key.getKey(), key.getValue());
         }
         this.execute(method, new DefaultResponseHandler());
+    }
+    
+    public void expireObjectAfter(Region region, String container, String object, int seconds) throws IOException {
+    	HttpPost method = new HttpPost(region.getStorageUrl(container, object));
+    	method.setHeader("X-Delete-After", seconds + "");
+    	this.execute(method, new DefaultResponseHandler());
     }
 
     public void updateContainerMetadata(Region region, String container,

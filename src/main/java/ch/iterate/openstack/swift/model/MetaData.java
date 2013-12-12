@@ -113,4 +113,20 @@ public class MetaData {
     public Map<String, String> getMetaData() {
         return metaData;
     }
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder( 
+				"--MetaData-- \n\tmimeType=" + mimeType + 
+				"\n\tcontentLength=" + contentLength + "\n\t eTag=" + eTag + 
+				"\n\tlastModified="+ lastModified + 
+				"\n\tmetaData=");
+		for (Map.Entry<String, String> kv: metaData.entrySet()) {
+			sb.append("\n\t\t" + kv.getKey() + ": \t" + kv.getValue());
+		}
+		sb.append("\n");
+		return sb.toString();
+	}
+    
+    
 }
